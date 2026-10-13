@@ -1,0 +1,1 @@
+El proyecto trata sobre una empresa de viajes para registrar clientes y sus idiomas predilectos, luego son guardados en la base de datos y mostrados en una tabla. 
