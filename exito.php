@@ -28,7 +28,7 @@
 
         // Validamos que no estén vacíos
         if (!empty($nombre) && !empty($email)) {
-
+            // Generar el hash
             $hash = hash('sha256', $nombre . $email . $idioma);
 
             $stmt = $c->prepare("INSERT INTO suscriptores (nombre, email, idioma, hash_integridad) VALUES (?, ?, ?, ?)");
@@ -47,31 +47,31 @@
 
                 $auditoria->execute();
                 $auditoria->close();
-                // ✅ Mostrar el mensaje en el idioma correcto
+                // Mostrar el mensaje en el idioma correcto
                 if ($idioma === 'es') {
-                    echo "<h2>✅ ¡El registro se realizo con exito!</h2>";
+                    echo "<h2> ¡El registro se realizo con exito!</h2>";
                     echo "<p>Gracias <strong>$nombre</strong> por suscribirte.</p>";
                     echo "<a href='index.php?idioma=es'>Volver al inicio</a>";
                 } elseif ($idioma === 'en') {
-                    echo "<h2>✅ Successful registration!</h2>";
+                    echo "<h2> Successful registration!</h2>";
                     echo "<p>Thank you, <strong>$nombre</strong>, for subscribing.</p>";
                     echo "<a href='index.php?idioma=en'>Back to home</a>";
                 } elseif ($idioma === 'br') {
-                    echo "<h2>✅ Registro bem-sucedido!</h2>";
+                    echo "<h2> Registro bem-sucedido!</h2>";
                     echo "<p>Obrigado, <strong>$nombre</strong>, por se inscrever.</p>";
                     echo "<a href='index.php?idioma=br'>Voltar ao início</a>";
                 } else {
-                    echo "<h2>✅ ¡Registro exitoso!</h2>";
+                    echo "<h2> ¡Registro exitoso!</h2>";
                     echo "<p>Gracias <strong>$nombre</strong> por suscribirte.</p>";
                     echo "<a href='index.php'>Volver al inicio</a>";
                 }
             } else {
-                echo "<p>❌ Error al guardar los datos: " . $stmt->error . "</p>";
+                echo "<p> Error al guardar los datos: " . $stmt->error . "</p>";
             }
 
             $stmt->close();
         } else {
-            echo "<p>⚠️ Por favor completa todos los campos.</p>";
+            echo "<p> Por favor completa todos los campos.</p>";
         }
     } else {
         echo "<p>Acceso no permitido.</p>";
